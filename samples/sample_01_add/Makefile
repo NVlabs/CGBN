@@ -14,6 +14,7 @@ pick:
 	@echo "   make maxwell"
 	@echo "   make pascal"
 	@echo "   make volta"
+	@echo "   make turing"
 	@echo
 
 clean:
@@ -31,3 +32,5 @@ pascal:
 volta: 
 	nvcc $(INC) $(LIB) -I../../include -arch=sm_70 add.cu -o add -lgmp
 
+turing: 
+	nvcc $(INC) $(LIB) -I../../include -arch=sm_75 add.cu -o add -lgmp

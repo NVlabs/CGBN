@@ -20,6 +20,7 @@ pick:
 	@echo "   make maxwell"
 	@echo "   make pascal"
 	@echo "   make volta"
+	@echo "   make turing"
 	@echo
 
 clean:
@@ -41,6 +42,9 @@ pascal: libgtest.a
 
 volta: libgtest.a
 	nvcc $(INC) $(LIB) -I$(GTEST_DIR)/include -I../include -std=c++11 -arch=sm_70 tester.cu libgtest.a -lgmp -Xcompiler -fopenmp -o tester
+
+turing: libgtest.a
+	nvcc $(INC) $(LIB) -I$(GTEST_DIR)/include -I../include -std=c++11 -arch=sm_75 tester.cu libgtest.a -lgmp -Xcompiler -fopenmp -o tester
 
 check:
 	@if [ -z "$(GTEST_HOME)" -a ! -d "../gtest" ]; then echo "Google Test framework required, see XMP documentation"; exit 1; fi
