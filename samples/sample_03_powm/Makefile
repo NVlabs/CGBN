@@ -14,6 +14,8 @@ pick:
 	@echo "   make maxwell"
 	@echo "   make pascal"
 	@echo "   make volta"
+	@echo "   make turing"
+	@echo "   make ampere"
 	@echo
 
 clean:
@@ -30,4 +32,10 @@ pascal:
 
 volta: 
 	nvcc $(INC) $(LIB) -I../../include -arch=sm_70 powm_odd.cu -o powmo -lgmp
+
+turing: 
+	nvcc $(INC) $(LIB) -I../../include -arch=sm_75 powm_odd.cu -o powmo -lgmp
+
+ampere: 
+	nvcc $(INC) $(LIB) -I../../include -arch=sm_80 powm_odd.cu -o powmo -lgmp
 

@@ -1,4 +1,4 @@
-.PHONY: pick clean gmp-run gmp-numactl-run xmp-run kepler maxwell pascal volta 
+.PHONY: pick clean gmp-run gmp-numactl-run xmp-run kepler maxwell pascal volta turing ampere
 
 ifdef GMP_HOME
   INC := -I$(GMP_HOME)/include
@@ -16,6 +16,8 @@ pick:
 	@echo "   make maxwell"
 	@echo "   make pascal"
 	@echo "   make volta"
+	@echo "   make turing"
+	@echo "   make ampere"
 	@echo
 
 clean:
@@ -55,4 +57,10 @@ pascal:
 
 volta:
 	nvcc $(INC) $(LIB) -I../include -arch=sm_70 xmp_tester.cu -o xmp_tester -lgmp
+
+turing:
+	nvcc $(INC) $(LIB) -I../include -arch=sm_75 xmp_tester.cu -o xmp_tester -lgmp
+
+ampere:
+	nvcc $(INC) $(LIB) -I../include -arch=sm_80 xmp_tester.cu -o xmp_tester -lgmp
 

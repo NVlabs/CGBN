@@ -41,7 +41,7 @@ If GMP is installed on your local system on the standard include and library pat
 
 CGBN also requires the Google Test framework source.  If this is installed on your system, set the environment variable GTEST_HOME to point to the source, if it's not installed, we provide a `make download-gtest` in the main CGBN makefile that will download and unpack the Google Test framework into the CGBN directory, where all the makefiles will find it automatically.
 
-Once GMP and the Google Test framework are set up, the CGBN samples, unit tests, and performance tests can be built with `make <arch>` where _\<arch\>_ is one of kepler, maxwell, pascal, volta.   The compilation takes several minutes due to the large number of kernels that must built.  CGBN requires CUDA 9.2 for Volta and CUDA 9.0 (or later) for Kepler, Maxwell, and Pascal.
+Once GMP and the Google Test framework are set up, the CGBN samples, unit tests, and performance tests can be built with `make <arch>` where _\<arch\>_ is one of kepler, maxwell, pascal, volta, turing, ampere.   The compilation takes several minutes due to the large number of kernels that must built.  CGBN requires CUDA 10+ for Volta+ and CUDA 9.0 (or later) for Kepler, Maxwell, and Pascal.
 
 ### Running Unit Tests
 

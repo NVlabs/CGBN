@@ -7,3 +7,8 @@ This beta release has several important improvements over the alpha release:
 *  Performance improvements when for sizes<2K bits, with TPI=8
 *  C style wrappers for all cgbn_env_t methods
 
+
+Minor update (June 2021)
+
+*  Added build tags for turing and ampere
+*  Fixed the depricated gtest TEST_CASE_P warnings

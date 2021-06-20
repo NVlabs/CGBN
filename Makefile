@@ -1,4 +1,4 @@
-.PHONY: pick clean download-gtest kepler maxwell pascal volta check
+.PHONY: pick clean download-gtest kepler maxwell pascal volta turing ampere check
 
 pick:
 	@echo
@@ -7,6 +7,8 @@ pick:
 	@echo "   make maxwell"
 	@echo "   make pascal"
 	@echo "   make volta"
+	@echo "   make turing"
+	@echo "   make ampere"
 	@echo
 
 clean:
@@ -40,6 +42,16 @@ volta: check
 	make -C samples volta
 	make -C unit_tests volta
 	make -C perf_tests volta
+
+turing: check
+	make -C samples turing
+	make -C unit_tests turing
+	make -C perf_tests turing
+
+ampere: check
+	make -C samples ampere
+	make -C unit_tests ampere
+	make -C perf_tests ampere
 
 check:
 	@if [ -z "$(GTEST_HOME)" -a ! -d "gtest" ]; then echo "Google Test framework required, see documentation"; exit 1; fi

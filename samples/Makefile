@@ -1,6 +1,6 @@
 SUBDIRS := sample_01_add sample_02_modinv sample_03_powm sample_04_miller_rabin
 
-TARGETS := clean kepler maxwell pascal volta
+TARGETS := clean kepler maxwell pascal volta turing ampere
 
 pick:
 	@echo
@@ -9,6 +9,8 @@ pick:
 	@echo "   make maxwell"
 	@echo "   make pascal"
 	@echo "   make volta"
+	@echo "   make turing"
+	@echo "   make ampere"
 	@echo
 
 $(TARGETS): $(SUBDIRS)
