@@ -106,6 +106,12 @@ For more complete examples, including proper error handling, please see the samp
 
 Copies the CGBN value of **_a_** into **_r_**. &nbsp; No return value.
 
+##### Swap
+
+`void cgbn_swap(cgbn_env_t env, cgbn_t &r, cgbn_t &a)`
+
+Swaps the CGBN value of **_a_** and **_r_**. &nbsp; No return value.
+
 ##### Addition and Subtraction
 
 `int32_t cgbn_add(cgbn_env_t env, cgbn_t &r, const cgbn_t &a, const cgbn_t &b)`

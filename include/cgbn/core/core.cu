@@ -183,6 +183,9 @@ class core_t {
   __device__ __forceinline__ static void     set(uint32_t r[LIMBS], const uint32_t a[LIMBS]) {
     mpset<LIMBS>(r, a);
   }
+  __device__ __forceinline__ static void     swap(uint32_t r[LIMBS], uint32_t a[LIMBS]) {
+    mpswap<LIMBS>(r, a);
+  }
   
   /* BASIC ARITHMETIC */
   __device__ __forceinline__ static int32_t  add(uint32_t r[LIMBS], const uint32_t a[LIMBS], const uint32_t b[LIMBS]);

@@ -143,6 +143,11 @@ void cgbn_env_t<context_t, bits, convergence>::set(cgbn_t &r, const cgbn_t &a) c
 }
 
 template<class context_t, uint32_t bits, cgbn_convergence_t convergence>
+void cgbn_env_t<context_t, bits, convergence>::swap(cgbn_t &r, cgbn_t &a) const {
+  mpz_swap(r._z, a._z);
+}
+
+template<class context_t, uint32_t bits, cgbn_convergence_t convergence>
 void cgbn_env_t<context_t, bits, convergence>::extract_bits(cgbn_t &r, const cgbn_t &a, const uint32_t start, const uint32_t len) const {
   mpz_fdiv_q_2exp(r._z, a._z, start);
   mpz_fdiv_r_2exp(r._z, r._z, len);
