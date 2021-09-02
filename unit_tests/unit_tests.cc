@@ -102,8 +102,14 @@ TYPED_TEST_SUITE_P(CGBN4);
 TYPED_TEST_SUITE_P(CGBN5);
 
 TYPED_TEST_P(CGBN1, set_1) {
-  bool result=run_test<test_add_1, TestFixture>(LONG_TEST);
-  
+  bool result=run_test<test_set_1, TestFixture>(LONG_TEST);
+
+  EXPECT_TRUE(result);
+}
+
+TYPED_TEST_P(CGBN1, swap_1) {
+  bool result=run_test<test_swap_1, TestFixture>(LONG_TEST);
+
   EXPECT_TRUE(result);
 }
 
@@ -576,13 +582,14 @@ TYPED_TEST_P(CGBN5, barrett_div_rem_wide_1) {
   EXPECT_TRUE(result);
 }
 
-REGISTER_TYPED_TEST_SUITE_P(CGBN1, 
- set_1, add_1, sub_1, negate_1, mul_1, mul_high_1, sqr_1, sqr_high_1, div_1, rem_1, div_rem_1, sqrt_1, 
+REGISTER_TYPED_TEST_SUITE_P(CGBN1,
+ set_1, swap_1, add_1, sub_1, negate_1,
+ mul_1, mul_high_1, sqr_1, sqr_high_1, div_1, rem_1, div_rem_1, sqrt_1,
  sqrt_rem_1, equals_1, equals_2, equals_3, compare_1, compare_2, compare_3, compare_4,
  extract_bits_1, insert_bits_1
 );
-REGISTER_TYPED_TEST_SUITE_P(CGBN2, 
- get_ui32_set_ui32_1, add_ui32_1, sub_ui32_1, mul_ui32_1, div_ui32_1, rem_ui32_1, 
+REGISTER_TYPED_TEST_SUITE_P(CGBN2,
+ get_ui32_set_ui32_1, add_ui32_1, sub_ui32_1, mul_ui32_1, div_ui32_1, rem_ui32_1,
  equals_ui32_1, equals_ui32_2, equals_ui32_3, equals_ui32_4, compare_ui32_1, compare_ui32_2,
  extract_bits_ui32_1, insert_bits_ui32_1, binary_inverse_ui32_1, gcd_ui32_1
 );

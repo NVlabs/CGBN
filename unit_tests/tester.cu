@@ -31,7 +31,8 @@ IN THE SOFTWARE.
 #include "sizes.h"
 
 typedef enum test_enum {
-  test_set_1, test_add_1, test_negate_1, test_sub_1, test_mul_1, test_mul_high_1, test_sqr_1, test_sqr_high_1, test_div_1, test_rem_1,
+  test_set_1, test_swap_1, test_add_1, test_negate_1, test_sub_1,
+  test_mul_1, test_mul_high_1, test_sqr_1, test_sqr_high_1, test_div_1, test_rem_1,
   test_div_rem_1, test_sqrt_1, test_sqrt_rem_1, test_equals_1, test_equals_2, test_equals_3, test_compare_1, test_compare_2,
   test_compare_3, test_compare_4, test_extract_bits_1, test_insert_bits_1,
   
