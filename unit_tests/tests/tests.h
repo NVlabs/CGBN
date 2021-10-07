@@ -23,6 +23,7 @@ IN THE SOFTWARE.
 ***/
 
 #include "set.h"
+#include "swap.h"
 #include "extract_bits.h"
 #include "insert_bits.h"
 #include "add.h"

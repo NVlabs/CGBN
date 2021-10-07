@@ -88,6 +88,11 @@ __host__ __device__ __forceinline__ void cgbn_set(env_t env, typename env_t::cgb
 }
 
 template<class env_t>
+__host__ __device__ __forceinline__ void cgbn_swap(env_t env, typename env_t::cgbn_t &r, typename env_t::cgbn_t &a) {
+  env.swap(r, a);
+}
+
+template<class env_t>
 __host__ __device__ __forceinline__ int32_t cgbn_add(env_t env, typename env_t::cgbn_t &r, const typename env_t::cgbn_t &a, const typename env_t::cgbn_t &b) {
   return env.add(r, a, b);
 }

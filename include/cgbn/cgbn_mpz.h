@@ -148,6 +148,7 @@ class cgbn_env_t {
 
   /* set/get routines */
   __host__ void       set(cgbn_t &r, const cgbn_t &a) const;
+  __host__ void       swap(cgbn_t &r, cgbn_t &a) const;
   __host__ void       extract_bits(cgbn_t &r, const cgbn_t &a, uint32_t start, uint32_t len) const;
   __host__ void       insert_bits(cgbn_t &r, const cgbn_t &a, uint32_t start, uint32_t len, const cgbn_t &value) const;
 

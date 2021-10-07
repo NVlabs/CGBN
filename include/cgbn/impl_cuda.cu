@@ -170,6 +170,11 @@ __device__ __forceinline__ void cgbn_env_t<context_t, bits, syncable>::set(cgbn_
   cgbn::core_t<cgbn_env_t>::set(r._limbs, a._limbs);
 }
 
+template<class context_t, uint32_t bits, cgbn_syncable_t syncable>
+__device__ __forceinline__ void cgbn_env_t<context_t, bits, syncable>::swap(cgbn_t &r, cgbn_t &a) const {
+  cgbn::core_t<cgbn_env_t>::swap(r._limbs, a._limbs);
+}
+
 template<class context_t, uint32_t bits, cgbn_syncable_t syncable> template<class source_cgbn_t>
 __device__ __forceinline__ void cgbn_env_t<context_t, bits, syncable>::set(cgbn_t &r, const source_cgbn_t &source) const {
   uint32_t sync, group_thread=threadIdx.x & TPI-1;
