@@ -104,7 +104,7 @@ class cgbn_env_t {
   static const uint32_t        TPI=context_t::TPI;
   static const uint32_t        MAX_ROTATION=context_t::MAX_ROTATION;
   static const uint32_t        SHM_LIMIT=context_t::SHM_LIMIT;
-  static const bool            CONSANT_TIME=context_t::CONSTANT_TIME;
+  static const bool            CONSTANT_TIME=context_t::CONSTANT_TIME;
   static const cgbn_syncable_t SYNCABLE=syncable;
 
   static const uint32_t        LIMBS=(bits/32+TPI-1)/TPI;
