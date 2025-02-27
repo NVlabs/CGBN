@@ -22,9 +22,6 @@ IN THE SOFTWARE.
 
 ***/
 
-#include <cooperative_groups.h>
-namespace cg=cooperative_groups;
-
 typedef enum {
   cgbn_instance_syncable,
   cgbn_warp_syncable,
