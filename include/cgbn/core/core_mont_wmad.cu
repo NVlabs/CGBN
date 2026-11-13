@@ -153,10 +153,10 @@ __device__ __forceinline__ void core_t<env>::mont_mul(uint32_t r[LIMBS], const u
   }
   
   chain_t<LIMBS+1> chain9;
-  r[0]=chain9.add(ra[0], c);
+  ra[0]=chain9.add(ra[0], c);
   #pragma unroll
   for(int32_t index=1;index<LIMBS;index++) 
-    r[index]=chain9.add(ra[index], ru[index-1]);
+    ra[index]=chain9.add(ra[index], ru[index-1]);
   r1=chain9.add(ra[LIMBS], ru[LIMBS-1]);
 
   // r1:r0 <= 0x00000002 0xFFFFFFFD
@@ -169,25 +169,26 @@ __device__ __forceinline__ void core_t<env>::mont_mul(uint32_t r[LIMBS], const u
     t=0;
 
   chain_t<LIMBS+1> chain10;
-  r[0]=chain10.add(r[0], t);
+  ra[0]=chain10.add(ra[0], t);
   #pragma unroll
   for(int32_t index=1;index<LIMBS;index++)
-    r[index]=chain10.add(r[index], 0);
+    ra[index]=chain10.add(ra[index], 0);
   c=chain10.add(r1, 0);
 
-  c=-fast_propagate_add(c, r);
+  c=-fast_propagate_add(c, ra);
 
   // compute -n
   t=n[0]-(group_thread==0);   // n must be odd, so there is no chance for a carry ripple
 
   chain_t<LIMBS+1> chain11;
-  r[0]=chain11.add(r[0], ~t & c);
+  ra[0]=chain11.add(ra[0], ~t & c);
   #pragma unroll
   for(int32_t index=1;index<LIMBS;index++)
-    r[index]=chain11.add(r[index], ~n[index] & c);
+    ra[index]=chain11.add(ra[index], ~n[index] & c);
   c=chain11.add(0, 0);
-  fast_propagate_add(c, r);
-  clear_padding(r);
+  fast_propagate_add(c, ra);
+  clear_padding(ra);
+  mpset<LIMBS>(r, ra);
 }
 #endif
 
@@ -425,10 +426,10 @@ __device__ __forceinline__ void fwmont_mul(uint32_t r[LIMBS], const uint32_t a[L
   }
   
   chain_t<LIMBS+1> chain9;
-  r[0]=chain9.add(ra[0], c);
+  ra[0]=chain9.add(ra[0], c);
   #pragma unroll
   for(int32_t index=1;index<LIMBS;index++) 
-    r[index]=chain9.add(ra[index], ru[index-1]);
+    ra[index]=chain9.add(ra[index], ru[index-1]);
   r1=chain9.add(ra[LIMBS], ru[LIMBS-1]);
 
   // r1:r0 <= 0x00000002 0xFFFFFFFD
@@ -441,25 +442,26 @@ __device__ __forceinline__ void fwmont_mul(uint32_t r[LIMBS], const uint32_t a[L
     t=0;
 
   chain_t<LIMBS+1> chain10;
-  r[0]=chain10.add(r[0], t);
+  ra[0]=chain10.add(ra[0], t);
   #pragma unroll
   for(int32_t index=1;index<LIMBS;index++)
-    r[index]=chain10.add(r[index], 0);
+    ra[index]=chain10.add(ra[index], 0);
   c=chain10.add(r1, 0);
 
-  c=-fast_propagate_add(c, r);
+  c=-fast_propagate_add(c, ra);
 
   // compute -n
   t=n[0]-(group_thread==0);   // n must be odd, so there is no chance for a carry ripple
 
   chain_t<LIMBS+1> chain11;
-  r[0]=chain11.add(r[0], ~t & c);
+  ra[0]=chain11.add(ra[0], ~t & c);
   #pragma unroll
   for(int32_t index=1;index<LIMBS;index++)
-    r[index]=chain11.add(r[index], ~n[index] & c);
+    ra[index]=chain11.add(ra[index], ~n[index] & c);
   c=chain11.add(0, 0);
-  fast_propagate_add(c, r);
-  clear_padding(r);
+  fast_propagate_add(c, ra);
+  clear_padding(ra);
+  mpset<LIMBS>(r, ra);
 }
 #endif
 
