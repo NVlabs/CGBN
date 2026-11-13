@@ -107,7 +107,7 @@ __device__ __forceinline__ void core_t<env>::mont_mul(uint32_t r[LIMBS], const u
         ra[index+3]=chain6.madhi(a[index+1], t1, ra[index+3]);
       }
       if(LIMBS%2==1)
-        ra[LIMBS+1]=chain3.add(ra[LIMBS+1], 0);
+        ra[LIMBS+1]=chain6.add(ra[LIMBS+1], 0);
 
       chain_t<> chain7;                               // aligned:   Q1 * N_odd
       ru[0]=chain7.add(ru[0], ra[1]);
@@ -117,14 +117,14 @@ __device__ __forceinline__ void core_t<env>::mont_mul(uint32_t r[LIMBS], const u
         ra[index]=chain7.madlo(n[index+1], q, ra[index+2]);
         ra[index+1]=chain7.madhi(n[index+1], q, ra[index+3]);
       }
-      ra[LIMBS-2-LIMBS%2]=chain3.madlo(n[LIMBS-1-LIMBS%2], q, ra[LIMBS-LIMBS%2]);
-      ra[LIMBS-1-LIMBS%2]=chain3.madhi(n[LIMBS-1-LIMBS%2], q, ra[LIMBS+1-LIMBS%2]);
+      ra[LIMBS-2-LIMBS%2]=chain7.madlo(n[LIMBS-1-LIMBS%2], q, ra[LIMBS-LIMBS%2]);
+      ra[LIMBS-1-LIMBS%2]=chain7.madhi(n[LIMBS-1-LIMBS%2], q, ra[LIMBS+1-LIMBS%2]);
       if(LIMBS%2==1) {
-        ra[LIMBS-1]=chain3.add(ra[LIMBS+1], 0);
+        ra[LIMBS-1]=chain7.add(ra[LIMBS+1], 0);
         ra[LIMBS]=0;
       }
       else 
-        ra[LIMBS-LIMBS%2]=chain3.add(0, 0);
+        ra[LIMBS-LIMBS%2]=chain7.add(0, 0);
 
       chain_t<> chain8;                               // unaigned: Q1 * N_even
       t1=chain8.madlo(n[0], q, ru[0]);
