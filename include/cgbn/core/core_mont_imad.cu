@@ -80,22 +80,23 @@ __device__ __forceinline__ void core_t<env>::mont_mul(uint32_t r[LIMBS], const u
   r[0]=chain5.add(x[0], t);
   #pragma unroll
   for(int32_t index=1;index<LIMBS;index++)
-    r[index]=chain5.add(x[index], 0);
+    x[index]=chain5.add(x[index], 0);
   c=chain5.add(x1, 0);
 
-  c=-fast_propagate_add(c, r);
+  c=-fast_propagate_add(c, x);
 
   // compute -n
   t=n[0]-(group_thread==0);   // n must be odd, so there is no chance for a carry ripple
 
   chain_t<LIMBS+1> chain6;
-  r[0]=chain6.add(r[0], ~t & c);
+  x[0]=chain6.add(x[0], ~t & c);
   #pragma unroll
   for(int32_t index=1;index<LIMBS;index++)
-    r[index]=chain6.add(r[index], ~n[index] & c);
+    x[index]=chain6.add(x[index], ~n[index] & c);
   c=chain6.add(0, 0);
-  fast_propagate_add(c, r);
-  clear_padding(r);
+  fast_propagate_add(c, x);
+  clear_padding(x);
+  mpset<LIMBS>(r, x);
 }
 
 template<class env>
