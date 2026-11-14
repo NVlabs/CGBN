@@ -35,7 +35,7 @@ __device__ __forceinline__ bool dequals(const uint32_t sync, const uint32_t a[li
   #pragma unroll
   for(int32_t index=1;index<limbs;index++)
     lor=lor | (a[index] ^ b[index]);
-  mask=__ballot_sync(sync, lor==0);
+  mask=__ballot_sync(sync, lor==0) & sync;
   if(tpi<warpSize)
     mask=mask>>(group_thread ^ warp_thread);
   return mask==TPI_ONES;
